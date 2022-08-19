@@ -1,14 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { routes } from '../router/routes';
+import { ROUTE } from '../router/routes';
+import { CustomLink } from './CustomLink';
 
 export const Nav = () => {
     return (
         <nav className="navbar navbar-expand-lg bg-light">
             <div className="d-flex gap-4 p-3">
-                <NavLink to={routes.HOME}>Home</NavLink>
-                <NavLink to={routes.SIGN_IN}>Sign In</NavLink>
-                <NavLink to={routes.SIGN_UP}>Sign Up</NavLink>
+                <CustomLink to={ROUTE.HOME}>Home</CustomLink>
+                <CustomLink to={ROUTE.FAVORITES}>Favorites</CustomLink>
+                <CustomLink to={ROUTE.SEARCH}>Search</CustomLink>
+                <CustomLink to={ROUTE.SIGN_IN}>Sign In</CustomLink>
+                <CustomLink to={ROUTE.SIGN_UP}>Sign Up</CustomLink>
             </div>
         </nav>
     );

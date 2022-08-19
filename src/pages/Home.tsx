@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { CountryList } from '../components/CountryList';
 import { Form } from '../components/Form';
 import {
@@ -16,16 +15,6 @@ export const Home = () => {
     const [requestParams, setRequestParams] = useState<CountryRequestParams[]>(
         []
     );
-
-    const { name } = useParams();
-
-    useEffect(() => {
-        fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
-            .then(rs => rs.json())
-            .then(data => {
-                console.log(data);
-            });
-    }, [name]);
 
     useEffect(() => {
         countryAPI
