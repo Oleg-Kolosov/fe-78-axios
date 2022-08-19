@@ -2,6 +2,7 @@ import axios from 'axios';
 
 enum CountryEndpoint {
     ALL = 'all',
+    DETAILS = 'name',
 }
 
 export type CountryRequestParams =
@@ -21,24 +22,9 @@ export interface ICountry {
     maps?: ICountryMaps;
 }
 
-interface ICountryAPI {
-    name: ICountryName;
-    maps: ICountryMaps;
-}
-
 interface ICountryMaps {
     googleMaps: string;
     openStreetMaps: string;
-}
-
-interface ICountryName {
-    common: string;
-    official: string;
-    nativeName: ICountryNativeName;
-}
-
-interface ICountryNativeName {
-    [key: string]: string | undefined;
 }
 
 class CountryAPI {
@@ -62,6 +48,19 @@ class CountryAPI {
         const { data } = await this.API.get<any>(CountryEndpoint.ALL, {
             params,
         });
+
+        return data;
+    }
+
+    public async getDetails(name: string = ''): Promise<any> {
+        const { data } = await this.API.get<any>(
+            `${CountryEndpoint.DETAILS}/${name}?fullText=true`
+        );
+        return data;
+    }
+
+    public async getByType(params: string): Promise<any> {
+        const { data } = await this.API.get<any>(params);
 
         return data;
     }

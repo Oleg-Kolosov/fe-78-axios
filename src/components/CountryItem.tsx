@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ROUTE } from '../router/routes';
+import { createPath } from '../router/utils';
 import { ICountry } from '../services/countryApi/countryApi';
 
 interface IProps {
@@ -7,7 +10,8 @@ interface IProps {
 
 export const CountryItem = ({ country }: IProps) => {
     return (
-        <div
+        <Link
+            to={createPath(ROUTE.COUNTRY_DETAILS, { name: country.name })}
             className="d-flex flex-column justify-content-between p-3 rounded shadow mb-3"
             style={{ width: 300 }}
         >
@@ -32,6 +36,6 @@ export const CountryItem = ({ country }: IProps) => {
                     <a href={country.maps.googleMaps}>see</a>
                 </div>
             )}
-        </div>
+        </Link>
     );
 };
